@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & ML Innovation | Coming Soon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #0a0a16;
+            color: #e0e0ff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(16, 16, 64, 0.8) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(16, 16, 64, 0.8) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(64, 224, 208, 0.7);
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px rgba(64, 224, 208, 0.5);
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(20px);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 90%;
+            text-align: center;
+            z-index: 10;
+            padding: 2rem;
+            background: rgba(10, 15, 35, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(64, 224, 208, 0.3);
+            box-shadow: 0 0 40px rgba(64, 224, 208, 0.2);
+            animation: containerGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes containerGlow {
+            0% {
+                box-shadow: 0 0 40px rgba(64, 224, 208, 0.2);
+            }
+            100% {
+                box-shadow: 0 0 60px rgba(64, 224, 208, 0.4);
+            }
+        }
+
+        .logo {
+            margin-bottom: 2rem;
+        }
+
+        .logo h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(90deg, #40e0d0, #9370db, #40e0d0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+            animation: gradientShift 3s linear infinite;
+            margin-bottom: 0.5rem;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .logo p {
+            font-size: 1.2rem;
+            color: #a0a0ff;
+            letter-spacing: 3px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .countdown-value {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #40e0d0, #9370db);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(64, 224, 208, 0.5);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            min-width: 80px;
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            color: #a0a0ff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .facts-container {
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: rgba(16, 22, 58, 0.6);
+            border-radius: 15px;
+            border: 1px solid rgba(64, 224, 208, 0.2);
+            position: relative;
+            overflow: hidden;
+            min-height: 120px;
+        }
+
+        .fact {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #e0e0ff;
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            transition: opacity 0.5s ease;
+        }
+
+        .fact.active {
+            opacity: 1;
+        }
+
+        .notify-form {
+            margin: 2rem 0;
+        }
+
+        .notify-form h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: #40e0d0;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        input {
+            padding: 0.8rem 1.2rem;
+            border: none;
+            border-radius: 50px;
+            background: rgba(16, 22, 58, 0.8);
+            color: #e0e0ff;
+            font-size: 1rem;
+            width: 300px;
+            max-width: 100%;
+            border: 1px solid rgba(64, 224, 208, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #40e0d0;
+            box-shadow: 0 0 15px rgba(64, 224, 208, 0.3);
+        }
+
+        button {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #40e0d0, #9370db);
+            color: #0a0a16;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(64, 224, 208, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(64, 224, 208, 0.5);
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(16, 22, 58, 0.8);
+            color: #40e0d0;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(64, 224, 208, 0.3);
+        }
+
+        .social-links a:hover {
+            background: rgba(64, 224, 208, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(64, 224, 208, 0.3);
+        }
+
+        footer {
+            margin-top: 2rem;
+            color: #a0a0ff;
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .logo h1 {
+                font-size: 2.5rem;
+            }
+            
+            .countdown {
+                gap: 1rem;
+            }
+            
+            .countdown-value {
+                font-size: 2rem;
+                min-width: 60px;
+            }
+            
+            .form-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="grid"></div>
+        <div class="particles" id="particles"></div>
+    </div>
+
+    <div class="container">
+        <div class="logo">
+            <h1>MAFAH.shop</h1>
+            <p>ARTIFICIAL INTELLIGENCE & MACHINE LEARNING</p>
+        </div>
+
+        <h2>THE FUTURE IS COMING SOON</h2>
+        
+        <div class="countdown">
+            <div class="countdown-item">
+                <div class="countdown-value" id="days">00</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="hours">00</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="minutes">00</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="seconds">00</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+
+        <div class="facts-container">
+            <div class="fact active" id="fact1">
+                AI can now generate human-like text, create art, and compose music with remarkable proficiency.
+            </div>
+            <div class="fact" id="fact2">
+                Machine learning algorithms can detect diseases like cancer with higher accuracy than human doctors in some cases.
+            </div>
+            <div class="fact" id="fact3">
+                By 2025, the AI market is projected to grow to over $190 billion globally.
+            </div>
+            <div class="fact" id="fact4">
+                Self-driving cars use AI to process terabytes of data from sensors to navigate safely.
+            </div>
+            <div class="fact" id="fact5">
+                AI can now predict protein structures, accelerating drug discovery and biological research.
+            </div>
+        </div>
+
+        <div class="notify-form">
+            <h3>GET NOTIFIED AT LAUNCH</h3>
+            <div class="form-group">
+                <input type="email" placeholder="Enter your email address">
+                <button>NOTIFY ME <i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+
+        <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-discord"></i></a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 MAfah.shop. All rights reserved. | The future of intelligence is coming</p>
+    </footer>
+
+    <script>
+        // Create floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 15}s`;
+            particle.style.animationDuration = `${10 + Math.random() * 10}s`;
+            particlesContainer.appendChild(particle);
+        }
+
+        // Countdown timer
+        const countdownDate = new Date();
+        countdownDate.setDate(countdownDate.getDate() + 30); // Set to 30 days from now
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Rotate facts
+        let currentFact = 1;
+        const totalFacts = 5;
+
+        function rotateFacts() {
+            document.getElementById(`fact${currentFact}`).classList.remove('active');
+            
+            currentFact++;
+            if (currentFact > totalFacts) currentFact = 1;
+            
+            document.getElementById(`fact${currentFact}`).classList.add('active');
+        }
+
+        setInterval(rotateFacts, 5000);
+
+        // Form submission
+        document.querySelector('button').addEventListener('click', function() {
+            const email = document.querySelector('input').value;
+            if (email && email.includes('@')) {
+                alert('Thank you! We will notify you at launch.');
+                document.querySelector('input').value = '';
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        });
+    </script>
+</body>
+</html>
